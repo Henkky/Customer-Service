@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost/customer_app
+    username: root
+    password:
+logging:
+  file:
+    name: log.txt
