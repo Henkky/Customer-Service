@@ -10,4 +10,4 @@ Data data yang disimpan meliputi
 -email
 
 Gender menggunakan konsep Join Column Entity
-dan proses add dan update menggunakan class DTO
+Proses add & update menggunakan class DTO
