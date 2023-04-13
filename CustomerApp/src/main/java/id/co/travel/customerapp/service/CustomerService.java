@@ -5,6 +5,7 @@ import id.co.travel.customerapp.model.CustomerDTO;
 import id.co.travel.customerapp.model.GenderData;
 import id.co.travel.customerapp.repository.CustomerSDJRepo;
 import id.co.travel.customerapp.repository.GenderDataSDJRepo;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,18 +19,27 @@ public class CustomerService {
     @Autowired
     GenderDataSDJRepo genderDataSDJRepo;
 
+    //Customer customerInput = new Customer();
+
     public Customer insert(CustomerDTO customer){
-        Customer custToInput = new Customer();
-        custToInput.setId(customer.getId());
-        custToInput.setName(customer.getName());
+        Customer customerInput = new Customer();
+        customerInput.setId(customer.getId());
+        customerInput.setName(customer.getName());
         GenderData genderInp = genderDataSDJRepo.findGenderDataByGenderid(customer.getGender());
-        custToInput.setGender(genderInp);
-        custToInput.setEmail(customer.getEmail());
-        return customerSDJRepo.save(custToInput);
+        customerInput.setGender(genderInp);
+        customerInput.setEmail(customer.getEmail());
+        return customerSDJRepo.save(customerInput);
     }
 
-    public Customer update(Customer customer){
-        return customerSDJRepo.save(customer);
+    public Customer update(CustomerDTO customer){
+        Customer customerInput = customerSDJRepo.findCustomerById(customer.getId());
+        customerInput.setId(customer.getId());
+        customerInput.setName(customer.getName());
+        GenderData genderInp = genderDataSDJRepo.findGenderDataByGenderid(customer.getGender());
+        customerInput.setGender(genderInp);
+        customerInput.setEmail(customer.getEmail());
+        //BeanUtils.copyProperties(customer,customerInput);
+        return customerSDJRepo.save(customerInput);
     }
 
     public void delete(int id){

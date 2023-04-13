@@ -4,7 +4,9 @@ import id.co.travel.customerapp.model.Customer;
 import id.co.travel.customerapp.model.CustomerDTO;
 import id.co.travel.customerapp.repository.CustomerSDJRepo;
 import id.co.travel.customerapp.service.CustomerService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,9 +15,6 @@ import java.util.List;
 @RestController
 @RequestMapping("custapi")
 public class RestCustomerController {
-    @Autowired
-    private CustomerSDJRepo customerSDJRepo;
-
     @Autowired
     private CustomerService customerService;
 
@@ -39,12 +38,11 @@ public class RestCustomerController {
 
     @PutMapping("/updcust")
     @ResponseStatus(HttpStatus.OK)
-    public Customer updateCustomer(@RequestBody Customer customer, @PathVariable("id") int id){
-        customer.setId(id);
+    public Customer updateCustomer(@RequestBody CustomerDTO customer){
         return customerService.update(customer);
     }
 
-    @DeleteMapping("/delcust")
+    @DeleteMapping("/delcust/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteCustomer(@PathVariable("id") int id){
         customerService.delete(id);
