@@ -7,3 +7,6 @@ spring:
 logging:
   file:
     name: log.txt
+  level:
+    root: debug
+    org.springframework.web : info

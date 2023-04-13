@@ -1,6 +1,7 @@
 package id.co.travel.customerapp.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +20,7 @@ public class GenderData {
     String description;
 
     @JsonBackReference
+    //mapped by harus diisi nama variabel reference di sebelah
     @OneToMany(mappedBy = "gender")
     private List<Customer> customers;
 
