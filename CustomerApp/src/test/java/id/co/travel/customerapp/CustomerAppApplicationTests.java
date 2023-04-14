@@ -31,7 +31,7 @@ class CustomerAppApplicationTests {
 
 	@Test
 	public void customerShouldReturnMessageFromService() throws Exception {
-		
+
 	}
 
 }
