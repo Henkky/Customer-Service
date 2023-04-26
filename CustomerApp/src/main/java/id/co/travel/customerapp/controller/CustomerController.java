@@ -1,50 +1,47 @@
 package id.co.travel.customerapp.controller;
 
-import id.co.travel.customerapp.model.Customer;
+import id.co.travel.customerapp.repository.model.Customer;
 import id.co.travel.customerapp.model.CustomerDTO;
-import id.co.travel.customerapp.repository.CustomerSDJRepo;
 import id.co.travel.customerapp.service.CustomerService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("custapi")
-public class RestCustomerController {
+@RequestMapping("customer")
+public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
-    @GetMapping("/customers")
+    @GetMapping()
     @ResponseStatus(HttpStatus.OK)
-    public List<Customer> findAll(){
+    public List<Customer> findAll() {
         return customerService.inquiryAll();
     }
 
-    @GetMapping("/customers/{id}")
+    @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Customer findCustomerById(@PathVariable("id") int id){
+    public Customer findCustomerById(@PathVariable("id") int id) {
         return customerService.inquiryById(id);
     }
 
-    @PostMapping("/addcust")
+    @PostMapping()
     @ResponseStatus(HttpStatus.OK)
-    public Customer addCustomer(@RequestBody CustomerDTO customer){
+    public Customer addCustomer(@RequestBody CustomerDTO customer) {
         return customerService.insert(customer);
     }
 
-    @PutMapping("/updcust")
+    @PutMapping()
     @ResponseStatus(HttpStatus.OK)
-    public Customer updateCustomer(@RequestBody CustomerDTO customer){
+    public Customer updateCustomer(@RequestBody CustomerDTO customer) {
         return customerService.update(customer);
     }
 
-    @DeleteMapping("/delcust/{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteCustomer(@PathVariable("id") int id){
+    public void deleteCustomer(@PathVariable("id") int id) {
         customerService.delete(id);
     }
 }

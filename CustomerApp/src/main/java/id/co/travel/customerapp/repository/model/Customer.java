@@ -1,8 +1,5 @@
-package id.co.travel.customerapp.model;
+package id.co.travel.customerapp.repository.model;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,15 +15,11 @@ public class Customer {
     private Integer id;
 
     @Column(name = "name")
-    String name;
+    private String name;
 
-    //@JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "gender")
-    @JsonManagedReference
-    GenderData gender;
+    @Column(name = "gender")
+    private String gender;
 
     @Column(name = "email")
-    String email;
-
+    private String email;
 }
