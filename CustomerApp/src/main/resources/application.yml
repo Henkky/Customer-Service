@@ -1,12 +1,14 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost/customer_app
+    url: jdbc:mysql://localhost:3307/customer_app
     username: root
-    password:
+    password: root
 logging:
   file:
     name: log.txt
   level:
     root: debug
     org.springframework.web : info
+server:
+  port: 8083
